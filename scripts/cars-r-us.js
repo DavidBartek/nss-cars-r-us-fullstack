@@ -1,7 +1,13 @@
-import { paintButtonHTML } from "./paintColor.js";
+import { Interiors } from "./Interiors.js";
+import { Paints } from "./Paints.js";
+import { Technologies } from "./Technologies.js";
+import { Wheels } from "./Wheels.js";
 
 export const CarsRUs = () => {
     return `
-        ${paintButtonHTML()}   
+        ${Paints()}
+        ${Interiors()}
+        ${Technologies()}
+        ${Wheels()}   
     `
 }

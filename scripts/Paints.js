@@ -12,14 +12,15 @@ const paintColors = getPaintColors()
     ...
 </select> */
 
-export const paintButtonHTML = () => {
-    let paintHTML = `<select id="paintColors">`
-    paintHTML += `  <option value="">Select paint color...</option>`
+export const Paints = () => {
+    let HTMLString = `<h2>Paint Colors</h2>`
+    HTMLString += `<select id="paintColors">`
+    HTMLString += `  <option value="">Select paint color...</option>`
     for (const paint of paintColors) {
-        paintHTML += `  <option value="${paint.id}">${paint.color}</option>`
+        HTMLString += `  <option value="${paint.id}">${paint.color}</option>`
     }
-    paintHTML += `</select>`
-    return paintHTML
+    HTMLString += `</select>`
+    return HTMLString
 }
 
 // adds change event
