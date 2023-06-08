@@ -20,7 +20,7 @@ export const Technologies = () => {
 document.addEventListener(
     "change",
     (event) => {
-        if (event.target.id = "technologies") {
+        if (event.target.id === "technologies") {
             const choice = event.target.value
             window.alert(`User has chosen tech package ${choice}`)
         }

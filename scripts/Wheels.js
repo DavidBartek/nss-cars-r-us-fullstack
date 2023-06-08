@@ -20,7 +20,7 @@ export const Wheels = () => {
 document.addEventListener(
     "change",
     (event) => {
-        if (event.target.id = "wheels") {
+        if (event.target.id === "wheels") {
             const choice = event.target.value
             window.alert(`User has chosen wheel style ${choice}`)
         }

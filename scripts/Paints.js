@@ -31,7 +31,7 @@ export const Paints = () => {
 document.addEventListener(
     "change",
     (event) => {
-        if (event.target.id = "paintColors") {
+        if (event.target.id === "paintColors") {
             const choice = event.target.value
             window.alert(`User has chosen paint color ${choice}`)
         }

@@ -20,7 +20,7 @@ export const Interiors = () => {
 document.addEventListener(
     "change",
     (event) => {
-        if (event.target.id = "interiors") {
+        if (event.target.id === "interiors") {
             const choice = event.target.value
             window.alert(`User has chosen interior ${choice}`)
         }
