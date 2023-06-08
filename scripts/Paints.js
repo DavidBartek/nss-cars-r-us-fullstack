@@ -26,13 +26,30 @@ export const Paints = () => {
 // adds change event
 // when the element target's id === paintColors,
 // create variable containing the selected targets **value**
+// generate window alert displaying the user's choice
 
 document.addEventListener(
     "change",
     (event) => {
         if (event.target.id = "paintColors") {
             const choice = event.target.value
-            // console.log(choice)
+            window.alert(`User has chosen paint color ${choice}`)
         }
     }
 )
+
+
+// document.addEventListener(
+//     "change",
+//     (event) => {
+//         const clickedItem = event.target
+//         if (clickedItem.id = "paintColors") {
+//             const choice = clickedItem.value
+//             for (const paint of paintColors) {
+//                 if (paint.id === parseInt(choice)) {
+//                     window.alert(`User has chosen ${paint.name}`)
+//                 }
+//             }
+//         }
+//     }
+// )

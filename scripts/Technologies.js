@@ -2,6 +2,8 @@ import { getTechnology } from "./database.js";
 
 const technologies = getTechnology()
 
+// see algorithm in Paints.js
+
 export const Technologies = () => {
     let HTMLString = `<h2>Technologies</h2>`
     HTMLString += `<select id="technologies">`
@@ -12,3 +14,15 @@ export const Technologies = () => {
     HTMLString += `</select>`
     return HTMLString
 }
+
+// see algorithm in Paints.js
+
+document.addEventListener(
+    "change",
+    (event) => {
+        if (event.target.id = "technologies") {
+            const choice = event.target.value
+            window.alert(`User has chosen tech package ${choice}`)
+        }
+    }
+)

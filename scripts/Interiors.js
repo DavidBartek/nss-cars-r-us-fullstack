@@ -14,3 +14,15 @@ export const Interiors = () => {
     HTMLString += `</select>`
     return HTMLString
 }
+
+// see algorithm in Paints.js
+
+document.addEventListener(
+    "change",
+    (event) => {
+        if (event.target.id = "interiors") {
+            const choice = event.target.value
+            window.alert(`User has chosen interior ${choice}`)
+        }
+    }
+)

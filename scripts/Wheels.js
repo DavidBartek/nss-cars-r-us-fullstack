@@ -2,6 +2,8 @@ import { getWheels } from "./database.js";
 
 const wheels = getWheels()
 
+// see algorithm in Paints.js
+
 export const Wheels = () => {
     let HTMLString = `<h2>Wheels</h2>`
     HTMLString += `<select id="wheels">`
@@ -12,3 +14,15 @@ export const Wheels = () => {
     HTMLString += `</select>`
     return HTMLString
 }
+
+// see algorithm in Paints.js
+
+document.addEventListener(
+    "change",
+    (event) => {
+        if (event.target.id = "wheels") {
+            const choice = event.target.value
+            window.alert(`User has chosen wheel style ${choice}`)
+        }
+    }
+)
