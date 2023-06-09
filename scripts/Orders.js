@@ -55,7 +55,7 @@ const orderHTMLBuilder = (order) => {
         currency: "USD"
     })
 
-    return `    <div id="orders__${order.id}">
+    return `    <div id="orders__list--item">
             <p>${chosenPaint.color} car with ${chosenWheels.option} wheels, ${chosenInterior.option}, and the ${chosenTech.package} for a total of ${costString}
         </div>`
 }
