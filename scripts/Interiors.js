@@ -1,4 +1,4 @@
-import { getInterior } from "./database.js";
+import { getInterior, setInterior } from "./database.js";
 
 const interiors = getInterior()
 
@@ -22,7 +22,9 @@ document.addEventListener(
     (event) => {
         if (event.target.id === "interiors") {
             const choice = event.target.value
-            window.alert(`User has chosen interior ${choice}`)
+            // debugging
+            // window.alert(`User has chosen interior ${choice}`)
+            setInterior(parseInt(choice))
         }
     }
 )

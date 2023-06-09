@@ -23,8 +23,8 @@ const database = {
         { id: 3, option: "18-inch Pair Spoke Silver", size: 18, wheelType: "spoke", color: "silver", price: 1500 },
         { id: 4, option: "18-inch Pair Spoke Black", size: 18, wheelType: "spoke", color: "black", price: 2000 },
     ],
-    order: [
-        { id: null, paintId: null, interiorId: null, techId: null, wheelsId: null }
+    orders: [
+       { id: null, paintId: null, interiorId: null, techId: null, wheelsId: null, timestamp: null }
     ],
     orderBuilder: {
         paintId: null, interiorId: null, techId: null, wheelsId: null
@@ -49,23 +49,48 @@ export const getWheels = () => {
     return database.wheels.map(wheel => ({ ...wheel }))
 }
 
-// setter functions: change state of orderBuilder
+export const getOrders = () => {
+    return database.orders.map(order => ({ ...order }))
+}
+
+// setter functions: change temporary state of orderBuilder
 
 export const setPaintColor = (id) => {
-    database.orderBuilder.paintId
+    database.orderBuilder.paintId = id
 }
 
 export const setInterior = (id) => {
-    database.orderBuilder.interiorId
+    database.orderBuilder.interiorId = id
 }
 
 export const setTech = (id) => {
-    database.orderBuilder.techId
+    database.orderBuilder.techId = id
 }
 
 export const setWheels = (id) => {
-    database.orderBuilder.wheelsId
+    database.orderBuilder.wheelsId = id
 }
 
-// setter function: change state of order based on inputs from orderBuilder
+// setter function: change permanent state of orders based on inputs from orderBuilder
 
+export const addNewOrder = () => {
+    // initializes new object in variable newOrder
+    const newOrder = { ...database.orderBuilder}
+
+    // assigns the "next in line" index to the new order
+    const mostRecentIndex = database.orders.length - 1
+    newOrder.id = database.orders[mostRecentIndex].id + 1
+
+    // populates timestamp property to when the button is clicked
+    newOrder.timestamp = Date.now()
+
+    // pushes new order object to orders array
+    database.orders.push(newOrder)
+
+    // resets orderBuilder
+    database.orderBuilder = {}
+
+    // dispatches a new custom event ("stateChanged") to the DOM; synchronously invokes the affected event listener.
+    // this is the final step to "firing" an event; created and initialized in main.js
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+}

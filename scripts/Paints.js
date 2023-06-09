@@ -1,4 +1,4 @@
-import { getPaintColors } from "./database.js";
+import { getPaintColors, setPaintColor } from "./database.js";
 
 const paintColors = getPaintColors()
 
@@ -13,7 +13,7 @@ const paintColors = getPaintColors()
 </select> */
 
 export const Paints = () => {
-    let HTMLString = `<h2>Paint Colors</h2>`
+    let HTMLString = `<h2>Paint</h2>`
     HTMLString += `<select id="paintColors">`
     HTMLString += `  <option value="">Select paint color...</option>`
     for (const paint of paintColors) {
@@ -33,7 +33,9 @@ document.addEventListener(
     (event) => {
         if (event.target.id === "paintColors") {
             const choice = event.target.value
-            window.alert(`User has chosen paint color ${choice}`)
+            // debugging
+            // window.alert(`User has chosen paint color ${choice}`)
+            setPaintColor(parseInt(choice))
         }
     }
 )
