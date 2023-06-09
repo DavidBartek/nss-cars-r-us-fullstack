@@ -1,9 +1,9 @@
 const database = {
     paintColor: [
-        { id: 1, color: "silver", price: 500 },
-        { id: 2, color: "midnight blue", price: 1000 },
-        { id: 3, color: "firebrick red", price: 1000 },
-        { id: 4, color: "spring green", price: 1000 }
+        { id: 1, color: "Silver", price: 500 },
+        { id: 2, color: "Midnight Blue", price: 1000 },
+        { id: 3, color: "Firebrick Red", price: 1000 },
+        { id: 4, color: "Spring Green", price: 1000 }
     ],
     interior: [
         { id: 1, option: "beige fabric", color: "beige", fabricType: "fabric", price: 500 },
@@ -18,13 +18,13 @@ const database = {
         { id: 4, package: "Ultra Package", features: ["basic sound system", "integrated navigation controls", "side and rear cameras"], price: 4500 },
     ],
     wheels: [
-        { id: 1, option: "17-inch Pair Radial", size: 17, wheelType: "radial", color: undefined, price: 500 },
+        { id: 1, option: "17-inch Pair Radial", size: 17, wheelType: "radial", color: "none", price: 500 },
         { id: 2, option: "17-inch Pair Radial Black", size: 17, wheelType: "radial", color: "black", price: 1000 },
         { id: 3, option: "18-inch Pair Spoke Silver", size: 18, wheelType: "spoke", color: "silver", price: 1500 },
         { id: 4, option: "18-inch Pair Spoke Black", size: 18, wheelType: "spoke", color: "black", price: 2000 },
     ],
     orders: [
-       { id: null, paintId: null, interiorId: null, techId: null, wheelsId: null, timestamp: null }
+       { id: 1, paintId: 1, interiorId: 1, techId: 1, wheelsId: 1, timestamp: 1 }
     ],
     orderBuilder: {
         paintId: null, interiorId: null, techId: null, wheelsId: null
