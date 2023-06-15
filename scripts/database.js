@@ -23,11 +23,16 @@ const database = {
         { id: 3, option: "18-inch Pair Spoke Silver", size: 18, wheelType: "spoke", color: "silver", price: 1500 },
         { id: 4, option: "18-inch Pair Spoke Black", size: 18, wheelType: "spoke", color: "black", price: 2000 },
     ],
+    models: [
+        { id: 1, model: "car", multiplier: 1 },
+        { id: 2, model: "SUV", multiplier: 1.5 },
+        { id: 3, model: "truck", multiplier: 2.25 }
+    ],
     orders: [
-       { id: 1, paintId: 1, interiorId: 1, techId: 1, wheelsId: 1, timestamp: 1 }
+       { id: 1, paintId: 1, interiorId: 1, techId: 1, wheelsId: 1, modelId: 1, timestamp: 1 }
     ],
     orderBuilder: {
-        paintId: null, interiorId: null, techId: null, wheelsId: null
+        paintId: null, interiorId: null, techId: null, wheelsId: null, modelId: null
     }
 }
 
@@ -47,6 +52,10 @@ export const getTechnology = () => {
 
 export const getWheels = () => {
     return database.wheels.map(wheel => ({ ...wheel }))
+}
+
+export const getModels = () => {
+    return database.models.map(model => ({ ...model }))
 }
 
 export const getOrders = () => {
@@ -69,6 +78,10 @@ export const setTech = (id) => {
 
 export const setWheels = (id) => {
     database.orderBuilder.wheelsId = id
+}
+
+export const setModel = (id) => {
+    database.orderBuilder.modelId = id
 }
 
 // setter function: change permanent state of orders based on inputs from orderBuilder

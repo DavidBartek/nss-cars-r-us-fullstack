@@ -4,6 +4,7 @@ import { Technologies } from "./Technologies.js";
 import { Wheels } from "./Wheels.js";
 import { Orders } from "./Orders.js";
 import { addNewOrder } from "./database.js";
+import { Models } from "./Models.js";
 
 // event listener
 // when user clicks the order button, their currently-chosen options (stored as state in orderBuilder) construct a new order object to be placed in state
@@ -34,6 +35,9 @@ export const CarsRUs = () => {
             </section>
             <section class="selectors__wheels">
                 ${Wheels()}
+            </section>
+            <section class="selectors__models">
+                ${Models()}
             </section>
         </article>
         

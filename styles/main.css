@@ -13,7 +13,8 @@
 .selectors__paints,
 .selectors__interiors,
 .selectors__technologies,
-.selectors__wheels {
+.selectors__wheels,
+.selectors__models {
     background-color: #fafad2;
     border-style: dotted;
     border-width: 1.5px;

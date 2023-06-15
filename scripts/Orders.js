@@ -1,4 +1,4 @@
-import { getPaintColors, getInterior, getTechnology, getWheels, getOrders } from "./database.js";
+import { getPaintColors, getInterior, getTechnology, getWheels, getOrders, getModels } from "./database.js";
 
 // this module will export an HTML string of custom orders.
 
@@ -33,6 +33,7 @@ const orderHTMLBuilder = (order) => {
     const interiors = getInterior()
     const technologies = getTechnology()
     const wheels = getWheels()
+    const models = getModels()
 
     // access correct objects from each array
     const chosenPaint = paints.find((paint) => { // .find(): takes paints array; iterates through each element (assigns to parameter, paint); returns if paint.id === order.paintId
@@ -47,16 +48,19 @@ const orderHTMLBuilder = (order) => {
     const chosenWheels = wheels.find((wheel) => {
         return wheel.id === order.wheelsId
     })
+    const chosenModel = models.find((model) => {
+        return model.id === order.modelId
+    })
 
     // add up prices and convert to a string
-    const totalCost = chosenPaint.price + chosenInterior.price + chosenTech.price + chosenWheels.price + 15000
+    const totalCost = (chosenPaint.price + chosenInterior.price + chosenTech.price + chosenWheels.price + 15000) * chosenModel.multiplier
     const costString = totalCost.toLocaleString("en-US", {
         style: "currency",
         currency: "USD"
     })
 
     return `    <div id="orders__list--item">
-            <p>${chosenPaint.color} car with ${chosenWheels.option} wheels, ${chosenInterior.option}, and the ${chosenTech.package} for a total of ${costString}
+            <p>${chosenPaint.color} ${chosenModel.model} with ${chosenWheels.option} wheels, ${chosenInterior.option}, and the ${chosenTech.package} for a total of ${costString}
         </div>`
 }
 
