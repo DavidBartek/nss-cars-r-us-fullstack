@@ -1,30 +1,23 @@
-import { getWheels, setWheels } from "./database.js";
+import { getWheels, setWheel } from "./database.js"
 
-const wheels = getWheels()
+document.addEventListener("change", clickEvent => {
+    if (clickEvent.target.id === "wheel") {
+        setWheel(parseInt(clickEvent.target.value))
+    }
+})
 
-// see algorithm in Paints.js
+const wheels = await getWheels()
 
 export const Wheels = () => {
-    let HTMLString = `<h2>Wheels</h2>`
-    HTMLString += `<select id="wheels">`
-    HTMLString += `  <option value="">Select wheels...</option>`
-    for (const wheel of wheels) {
-        HTMLString += `  <option value="${wheel.id}">${wheel.option}</option>`
-    }
-    HTMLString += `</select>`
-    return HTMLString
-}
-
-// see algorithm in Paints.js
-
-document.addEventListener(
-    "change",
-    (event) => {
-        if (event.target.id === "wheels") {
-            const choice = event.target.value
-            // debugging
-            // window.alert(`User has chosen wheel style ${choice}`)
-            setWheels(parseInt(choice))
+    return `<h2>Wheels</h2>
+    <select id="wheel">
+        <option value="0">Select an wheel style</option>
+        ${
+            wheels.map(
+                (wheel) => {
+                    return `<option value="${wheel.id}">${wheel.style}</option>`
+                }
+            ).join("")
         }
-    }
-)
+    </select>`
+}

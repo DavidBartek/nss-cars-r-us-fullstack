@@ -1,30 +1,24 @@
-import { getInterior, setInterior } from "./database.js";
+import { getInteriors, setInterior } from "./database.js"
 
-const interiors = getInterior()
+document.addEventListener("change", clickEvent => {
+    if (clickEvent.target.id === "interior") {
+        setInterior(parseInt(clickEvent.target.value))
+    }
+})
 
-// see algorithm in Paints.js
+const interiors = await getInteriors()
 
 export const Interiors = () => {
-    let HTMLString = `<h2>Interiors</h2>`
-    HTMLString += `<select id="interiors">`
-    HTMLString += `  <option value="">Select interior style...</option>`
-    for (const interior of interiors) {
-        HTMLString += `  <option value="${interior.id}">${interior.option}</option>`
-    }
-    HTMLString += `</select>`
-    return HTMLString
+    return `<h2>Interior</h2>
+        <select id="interior">
+            <option value="0">Select an interior material</option>
+            ${
+                interiors.map(
+                    (interior) => {
+                        return `<option value="${interior.id}">${interior.material}</option>`
+                    }
+                ).join("")
+            }
+        </select>
+    `
 }
-
-// see algorithm in Paints.js
-
-document.addEventListener(
-    "change",
-    (event) => {
-        if (event.target.id === "interiors") {
-            const choice = event.target.value
-            // debugging
-            // window.alert(`User has chosen interior ${choice}`)
-            setInterior(parseInt(choice))
-        }
-    }
-)

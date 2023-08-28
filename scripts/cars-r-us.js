@@ -1,52 +1,45 @@
-import { Interiors } from "./Interiors.js";
-import { Paints } from "./Paints.js";
-import { Technologies } from "./Technologies.js";
-import { Wheels } from "./Wheels.js";
-import { Orders } from "./Orders.js";
-import { addNewOrder } from "./database.js";
-import { Models } from "./Models.js";
-
-// event listener
-// when user clicks the order button, their currently-chosen options (stored as state in orderBuilder) construct a new order object to be placed in state
+import { addCustomOrder } from "./database.js"
+import { Interiors } from "./Interiors.js"
+import { Orders } from "./Orders.js"
+import { Paints } from "./Paints.js"
+import { Technologies } from "./Technologies.js"
+import { Wheels } from "./Wheels.js"
 
 document.addEventListener(
-    "click", 
-    e => {
-        const selection = e.target
-        if (selection.id === "orderButton") {
-            addNewOrder()
+    "click",
+    (event) => {
+        if (event.target.id === "orderButton") {
+            addCustomOrder()
         }
-})
+    }
+)
 
-
-export const CarsRUs = () => {
+export const CarBuilder = () => {
     return `
         <h1>Cars 'R Us: Personal Car Builder</h1>
 
-        <article class="selectors">
-            <section class="selectors__paints">
+        <article class="choices">
+            <section class="choices__metals options">
                 ${Paints()}
             </section>
-            <section class="selectors__interiors">
+            <section class="choices__sizes options">
                 ${Interiors()}
             </section>
-            <section class="selectors__technologies">
-                ${Technologies()}
-            </section>
-            <section class="selectors__wheels">
+            <section class="choices__styles options">
                 ${Wheels()}
             </section>
-            <section class="selectors__models">
-                ${Models()}
+            <section class="choices__styles options">
+                ${Technologies()}
             </section>
         </article>
-        
+
         <article>
-            <button id="orderButton">Place Order</button>
+            <button id="orderButton">Place Car Order</button>
         </article>
-        
-        <article class="orders">
+
+        <article class="customOrders">
+            <h2>Custom Car Orders</h2>
             ${Orders()}
-        </article>   
+        </article>
     `
 }

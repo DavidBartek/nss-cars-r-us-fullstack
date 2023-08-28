@@ -1,109 +1,130 @@
 const database = {
-    paintColor: [
+    orderBuilder: {
+
+    },
+    paints: [
         { id: 1, color: "Silver", price: 500 },
-        { id: 2, color: "Midnight Blue", price: 1000 },
-        { id: 3, color: "Firebrick Red", price: 1000 },
-        { id: 4, color: "Spring Green", price: 1000 }
+        { id: 2, color: "Midnight Blue", price: 710 },
+        { id: 3, color: "Firebrick Red", price: 965 },
+        { id: 4, color: "Spring Green", price: 965 }
     ],
-    interior: [
-        { id: 1, option: "beige fabric", color: "beige", fabricType: "fabric", price: 500 },
-        { id: 2, option: "charcoal fabric", color: "charcoal", fabricType: "fabric", price: 500 },
-        { id: 3, option: "white leather", color: "white", fabricType: "leather", price: 1500 },
-        { id: 4, option: "black leather", color: "black", fabricType: "leather", price: 1500 }
+    technologies: [
+        { id: 1, package: "Basic Package", price: 500 },
+        { id: 2, package: "Navigation Package", price: 710 },
+        { id: 3, package: "Visibility Package", price: 965 },
+        { id: 4, package: "Ultra Package", price: 965 }
     ],
-    technology: [
-        { id: 1, package: "Basic Package", features: ["basic sound system"], price: 0 },
-        { id: 2, package: "Navigation Package", features: ["basic sound system", "integrated navigation controls"], price: 2000 },
-        { id: 3, package: "Visibility Package", features: ["basic sound system", "side and rear cameras"], price: 3000 },
-        { id: 4, package: "Ultra Package", features: ["basic sound system", "integrated navigation controls", "side and rear cameras"], price: 4500 },
+    interiors: [
+        { id: 1, material: "Beige Fabric", price: 405 },
+        { id: 2, material: "Charcoal Fabric", price: 782 },
+        { id: 3, material: "White Leather", price: 1470 },
+        { id: 4, material: "Black Leather", price: 1997 }
     ],
     wheels: [
-        { id: 1, option: "17-inch Pair Radial", size: 17, wheelType: "radial", color: "none", price: 500 },
-        { id: 2, option: "17-inch Pair Radial Black", size: 17, wheelType: "radial", color: "black", price: 1000 },
-        { id: 3, option: "18-inch Pair Spoke Silver", size: 18, wheelType: "spoke", color: "silver", price: 1500 },
-        { id: 4, option: "18-inch Pair Spoke Black", size: 18, wheelType: "spoke", color: "black", price: 2000 },
+        { id: 1, style: "17-inch Pair Radial", price: 12.42 },
+        { id: 2, style: "17-inch Pair Radial Black", price: 736.4 },
+        { id: 3, style: "18-inch Pair Spoke Silver", price: 1258.9 },
+        { id: 4, style: "18-inch Pair Spoke Black", price: 795.45 }
     ],
-    models: [
-        { id: 1, model: "car", multiplier: 1 },
-        { id: 2, model: "SUV", multiplier: 1.5 },
-        { id: 3, model: "truck", multiplier: 2.25 }
-    ],
-    orders: [
-       { id: 1, paintId: 1, interiorId: 1, techId: 1, wheelsId: 1, modelId: 1, timestamp: 1 }
-    ],
-    orderBuilder: {
-        paintId: null, interiorId: null, techId: null, wheelsId: null, modelId: null
-    }
+    customOrders: [
+        {
+            id: 1,
+            interiorId: 3,
+            wheelId: 2,
+            technologyId: 1,
+            paintId: 3
+        }
+    ]
 }
 
-// "getter" functions
-
-export const getPaintColors = () => {
-    return database.paintColor.map(paint => ({ ...paint }))
-}
-
-export const getInterior = () => {
-    return database.interior.map(interiorOpt => ({ ...interiorOpt }))
-}
-
-export const getTechnology = () => {
-    return database.technology.map(tech => ({ ...tech }))
-}
-
-export const getWheels = () => {
-    return database.wheels.map(wheel => ({ ...wheel }))
-}
-
-export const getModels = () => {
-    return database.models.map(model => ({ ...model }))
-}
-
-export const getOrders = () => {
-    return database.orders.map(order => ({ ...order }))
-}
-
-// setter functions: change temporary state of orderBuilder
-
-export const setPaintColor = (id) => {
+export const setPaint = (id) => {
     database.orderBuilder.paintId = id
+    // document.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
+export const getCurrentOrder = () => {
+    return database.orderBuilder
+}
+
+export const setWheel = (id) => {
+    database.orderBuilder.wheelId = id
+    // document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
 export const setInterior = (id) => {
     database.orderBuilder.interiorId = id
+    // document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
-export const setTech = (id) => {
-    database.orderBuilder.techId = id
+export const setTechnology = (id) => {
+    database.orderBuilder.technologyId = id
+    // document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
-export const setWheels = (id) => {
-    database.orderBuilder.wheelsId = id
-}
+export const addCustomOrder = () => {
+    const newOrder = {...database.orderBuilder}
+    newOrder.timestamp = new Date().toLocaleDateString("en-US")
+    newOrder.id = database.customOrders[database.customOrders.length - 1].id + 1
+    database.customOrders.push(newOrder)
 
-export const setModel = (id) => {
-    database.orderBuilder.modelId = id
-}
-
-// setter function: change permanent state of orders based on inputs from orderBuilder
-
-export const addNewOrder = () => {
-    // initializes new object in variable newOrder
-    const newOrder = { ...database.orderBuilder}
-
-    // assigns the "next in line" index to the new order
-    const mostRecentIndex = database.orders.length - 1
-    newOrder.id = database.orders[mostRecentIndex].id + 1
-
-    // populates timestamp property to when the button is clicked
-    newOrder.timestamp = Date.now()
-
-    // pushes new order object to orders array
-    database.orders.push(newOrder)
-
-    // resets orderBuilder
     database.orderBuilder = {}
-
-    // dispatches a new custom event ("stateChanged") to the DOM; synchronously invokes the affected event listener.
-    // this is the final step to "firing" an event; created and initialized in main.js
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
+
+// NEW API getters
+
+const apiDomain = `https://localhost:7226`
+
+export const getOrders = async () => {
+    const res = await fetch(`${apiDomain}/orders`);
+    const data = await res.json();
+    return data;
+}
+
+export const getWheels = async () => {
+    const res = await fetch(`${apiDomain}/wheels`);
+    const data = await res.json();
+    return data;
+}
+
+export const getInteriors = async () => {
+    const res = await fetch(`${apiDomain}/interiors`);
+    const data = await res.json();
+    return data;
+}
+
+export const getTechnologies = async () => {
+    const res = await fetch(`${apiDomain}/technologies`);
+    console.log(res); // ^^ waits for the promise returned by fetch; res is the server response object
+    const data = await res.json();
+    console.log(data); // ^^ reads the server response object as JSON data. Returns another promise, resolves to parsed JSON data, stored in "data". "Await" waits for this promise to resolve.
+    return data;
+};
+
+export const getPaints = async () => {
+    const res = await fetch(`${apiDomain}/paintColors`);
+    const data = await res.json();
+    return data;
+}
+
+// original local database getters
+
+// export const getOrders = () => {
+//     return [...database.customOrders]
+// }
+
+// export const getWheels = () => {
+//     return [...database.wheels]
+// }
+
+// export const getInteriors = () => {
+//     return [...database.interiors]
+// }
+
+// export const getTechnologies = () => {
+//     return [...database.technologies]
+// }
+
+// export const getPaints = () => {
+//     return [...database.paints]
+// }

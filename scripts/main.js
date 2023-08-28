@@ -1,19 +1,15 @@
-// main function: renders HTML to the document at location: id="contianer"
-
-import { CarsRUs } from "./cars-r-us.js";
+import { CarBuilder } from "./cars-r-us.js"
 
 const mainContainer = document.querySelector("#container")
 
 const renderAllHTML = () => {
-    mainContainer.innerHTML = CarsRUs()
+    mainContainer.innerHTML = CarBuilder()
 }
 
 renderAllHTML()
 
-// listens for custom event, type="stateChanged" (this will be dispatched in database.js).
-// When dispatched by the database module, the main module will generate all the HTML again and display it.
 
-document.addEventListener("stateChanged", event => { // "listens" for "stageChanged" (custom) event; then passes a function, defined below
-    console.log("State of data has changed. Regenerating HTML...") // logs this string to console
-    renderAllHTML() // calls renderAllHTML() again.
-}) 
+document.addEventListener("stateChanged", event => {
+    console.log("State of data has changed. Regenerating HTML...")
+    renderAllHTML()
+})

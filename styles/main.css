@@ -1,47 +1,46 @@
+@import "details.css";
 @import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One");
 
-#container {
-    font-family: "Patua One", serif;
+/*Typography
+--------------------------------------------------------------*/
+body,
+button,
+input,
+select,
+textarea {
+	color: #404040;
+	font-family: "Comfortaa", Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.5;
 }
 
-.selectors {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+h1,h2,h3,h4,h5,h6 {
+  font-family: "Patua One", serif;
+  letter-spacing: 2px;
 }
 
-.selectors__paints,
-.selectors__interiors,
-.selectors__technologies,
-.selectors__wheels,
-.selectors__models {
-    background-color: #fafad2;
-    border-style: dotted;
-    border-width: 1.5px;
-    border-radius: 15px;
-    border-color: blue;
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-bottom: 1em;
-    margin: 2em;
-    flex-basis: 24%;
-    box-shadow: 5px 5px 5px gray
+ul {
+    list-style-type: none;
+    padding-inline-start: 0.25rem;
 }
 
 #orderButton {
-    color: white;
-    background-color: #175558;
-    padding: .5em;
-    margin-top: 1em
+    margin: 1rem 0 2rem 2rem;
+    padding: 0.5rem;
+    background-color: rgb(7, 86, 87);
+    color: lightgoldenrodyellow;
+    font-size: 1rem;
 }
 
-#orders__list--item {
-    background-color: #eff8ff;
-    border-style: dotted;
-    border-width: 1.5px;
-    border-color: lightblue;
-    padding: .5em;
-    padding-left: 1em;
-    max-width: 75%;
-    margin: auto
+.types {
+    display: flex;
+    margin: 2rem 0 0 2rem;
+    flex-wrap: wrap;
+}
+
+.order {
+    border: 1px dashed darkcyan;
+    background-color: aliceblue;
+    padding: 1rem;
+    margin: 1rem 0;
 }
