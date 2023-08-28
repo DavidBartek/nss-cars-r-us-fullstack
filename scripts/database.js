@@ -61,6 +61,8 @@ export const setTechnology = (id) => {
     // document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
+// NEW add custom order POST
+
 export const addCustomOrder = async () => {
     const newOrder = {...database.orderBuilder}
     await fetch(`${apiDomain}/orders`, {
