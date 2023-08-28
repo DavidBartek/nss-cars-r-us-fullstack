@@ -61,15 +61,18 @@ export const setTechnology = (id) => {
     // document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
-export const addCustomOrder = () => {
+export const addCustomOrder = async () => {
     const newOrder = {...database.orderBuilder}
-    newOrder.timestamp = new Date().toLocaleDateString("en-US")
-    newOrder.id = database.customOrders[database.customOrders.length - 1].id + 1
-    database.customOrders.push(newOrder)
-
+    await fetch(`${apiDomain}/orders`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newOrder),
+    });
     database.orderBuilder = {}
     document.dispatchEvent(new CustomEvent("stateChanged"))
-}
+};
 
 // NEW API getters
 
@@ -128,3 +131,14 @@ export const getPaints = async () => {
 // export const getPaints = () => {
 //     return [...database.paints]
 // }
+
+// original database create order setter
+
+// export const addCustomOrder = () => {
+//     const newOrder = {...database.orderBuilder}
+//     newOrder.timestamp = new Date().toLocaleDateString("en-US")
+//     newOrder.id = database.customOrders[database.customOrders.length - 1].id + 1
+//     database.customOrders.push(newOrder)
+
+//     database.orderBuilder = {}
+//     document.dispatchEvent(new CustomEvent("stateChanged"))

@@ -2,8 +2,8 @@ import { CarBuilder } from "./cars-r-us.js"
 
 const mainContainer = document.querySelector("#container")
 
-const renderAllHTML = () => {
-    mainContainer.innerHTML = CarBuilder()
+const renderAllHTML = async () => {
+    mainContainer.innerHTML = await CarBuilder()
 }
 
 renderAllHTML()
