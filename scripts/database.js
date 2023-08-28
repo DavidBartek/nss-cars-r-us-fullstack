@@ -76,6 +76,15 @@ export const addCustomOrder = async () => {
     document.dispatchEvent(new CustomEvent("stateChanged"))
 };
 
+// NEW completeOrder - called when "complete" button on an order in the orders list is clicked
+
+export const completeOrder = async (orderId) => {
+    await fetch(`${apiDomain}/orders/${orderId}/fulfill`, {
+        method: "POST",
+    });
+    document.dispatchEvent(new CustomEvent("stateChanged"));
+};
+
 // NEW API getters
 
 const apiDomain = `https://localhost:7226`

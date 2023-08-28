@@ -1,4 +1,4 @@
-import { addCustomOrder } from "./database.js"
+import { addCustomOrder, completeOrder } from "./database.js"
 import { Interiors } from "./Interiors.js"
 import { Orders } from "./Orders.js"
 import { Paints } from "./Paints.js"
@@ -13,6 +13,16 @@ document.addEventListener(
         }
     }
 )
+
+document.addEventListener(
+    "click",
+    (event) => {
+        const { name, id } = event.target;
+        if (name === "complete" {
+            completeOrder(id);
+        }
+    }
+);
 
 export const CarBuilder = async () => {
     return `

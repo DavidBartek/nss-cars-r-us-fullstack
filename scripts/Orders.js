@@ -1,11 +1,4 @@
-import { getWheels, getInteriors, getTechnologies, getPaints, getOrders } from "./database.js"
-
-
-const paints = await getPaints()
-const interiors = await getInteriors()
-const techs = await getTechnologies()
-const wheels = await getWheels()
-
+import { getOrders } from "./database.js"
 
 export const Orders = async () => {
     
@@ -24,6 +17,7 @@ export const Orders = async () => {
                 ${order.interior.material} interior,
                 and the ${order.technology.package}
                 for a total cost of $${order.totalCost}
+                <input type="button" name="complete" id="${order.id}" value="Complete">
             </section>`
         })
         .join("")
