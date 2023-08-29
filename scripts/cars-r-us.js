@@ -14,15 +14,12 @@ document.addEventListener(
     }
 )
 
-document.addEventListener(
-    "click",
-    (event) => {
-        const { name, id } = event.target;
-        if (name === "complete" {
-            completeOrder(id);
-        }
+document.addEventListener("click", (event) => {
+    const { name, id } = event.target;
+    if (name === "complete") {
+      completeOrder(id);
     }
-);
+  });
 
 export const CarBuilder = async () => {
     return `
